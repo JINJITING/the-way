@@ -5,7 +5,7 @@
 const path = require('path');
 
 module.exports = {
-  base: '/F1/',
+  base: '/FEN/',
   title: '前端之路',
   description: 'JINJITING 的前端学习笔记。',
   // head: ['link', { rel: 'icon', href: '/logo.png' }],
