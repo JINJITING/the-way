@@ -51,12 +51,6 @@ module.exports = {
           ]
         },
         {
-          title: 'CSS',
-          children: [
-            { title: 'CSS3 的4个自适应关键字', path: '/base/css/adaptive-keywords.md'}
-          ]
-        },
-        {
           title: 'HTTP',
           children: [
             { title: 'URI/URL/URN', path: '/base/http/uri-and-url.md'},
@@ -76,13 +70,6 @@ module.exports = {
           ],
         },
       ]
-      //{
-      //     title: '其他',
-      //     children: [
-      //       { title: '正则表达式', path: '/other/regular-expression.md'}
-      //     ]
-      //   }
-      // ],
     },
     lastUpdated: '最后更新',
   },
