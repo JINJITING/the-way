@@ -21,15 +21,15 @@ module.exports = {
   dest: 'dist',
   themeConfig: {
     nav: [
-      {
-        text: '读书笔记',
-        items: [
-          { text: 'JS 高级程序设计', link: '/books/book1/'}
-        ]
-      },
+      // {
+      //   text: '读书笔记',
+      //   items: [
+      //     { text: 'JS 高级程序设计', link: '/books/book1/'}
+      //   ]
+      // },
       { text: '前端基础', link: '/base/' },
-      { text: '脚本/API', link: '/script/' },
-      { text: 'pavilion', link: 'https://jinjiting.github.io/pavilion/'}
+      { text: '脚本', link: '/script/' },
+      // { text: 'pavilion', link: 'https://jinjiting.github.io/pavilion/'}
     ],
     sidebar: {
       '/books/book1/': [
