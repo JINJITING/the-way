@@ -1,39 +1,39 @@
-# JS的执行机制
+# JS 的执行机制
 
 ## 提升（Hoisting）
-```JavaScript
+```js
 var name = 'js';
-var fun = function(){
+var fun = function() {
   console.log(1);
 }
-function fn(){
+function fn() {
   console.log(2);
 }
 ```
 以上代码等同于:
-```JavaScript
-//fn函数是完整的函数声明
-function fn = function(){//声明
+```js
+//fn 函数是完整的函数声明
+function fn = function() {//声明
   console.log(2);
 }
 var name;//声明
 name = 'js';//赋值
 var fun;//声明
-fun = function(){//赋值
+fun = function() {//赋值
   console.log(1);
   fn();
 }
 ```
 **变量提升**，指在 JS 代码执行过程中，（表面上）将变量的声明和函数的声明部分提升到代码开头。**变量提升后，会设置默认值 undefined**。实际上，**代码的位置并没有改变，而是在编译阶段被 JS 引擎放入内存中**。
 
-```JavaScript
+```js
 log(x);//undefined
 var x = 'x';
 function log(x){
   console.log(x);
 }
 /** 执行上下文中的变量环境
- * function log(x){console.log(x)}
+ * function log(x){ console.log(x) }
  * var x;
  */
 /** 可执行代码
@@ -56,18 +56,36 @@ function log(x){
 + 函数提升在变量提升之前。
 ### 变量提升带来的问题
 1. 变量覆盖
+  ```js
+  var name = 'global-name';
+  function logName() {
+    console.log(name); // undefined
+    if (true) {
+      var name = 'fn-name';
+    }
+    console.log(name); // 'fn-name'
+  }
+  logName();
+  //在 logName 函数执行时，var name 变量声明提升至 logName 的函数执行上下文中，默认值为 undefined
+  ```
 2. 本应销毁的变量没有销毁
+  ```js
+  for(var i=0;i<5;i++){
+    
+  }
+  console.log(i);// 5
+  ```
 
 
 ## 调用栈（call Stack）
 在执行上下文创建后，JS 引擎会用栈来管理执行上下文，这个栈即调用栈。
-```JavaScript
+```js
 var a = 1;
-function plus(a，b){
+function plus(a，b) {
   console.trace();//打印栈结构
   return a + b;
 }
-function plusTen(a，b){
+function plusTen(a，b) {
   var x = 10;
   return plus(a，b) + x;
 }
@@ -86,13 +104,13 @@ plusTen(1，5)
 **全局作用域**中的对象在代码中的任何地方都能访问，生命周期伴随着页面的生命周期；
 **函数作用域**就是在函数内部定义的变量或函数只能在函数内部被访问；
 **块级作用域**就是使用大括号包含的一段代码，如：
-```JavaSCript
+```js
 if(true){}//if块
 function fn(){}//函数块
 for(let i=0;i<2;i++){}//for循环块
 ```
 ES6通过let和const实现块级作用域。
-```JavaScript
+```js
 var a = 1;
 let b = 2;
 {
@@ -114,7 +132,7 @@ console.log(d);//error:d is not defined
 2. 执行代码，当执行到块里面的代码时，将块内的变量压到栈顶。
 3. 当执行到 console.log(b) 时，在词法环境栈由上到下，查找变量 b，没有找到则往变量环境中查找。
 4. 执行完对应的代码后，销毁对应的块级作用域。   
-**作用域链（scope chain）** 即 JS 引擎查找某个变量的链条。
-**词法作用域**：代码中由变量和函数声明位置决定的作用域（静态作用域）。
 
-<!-- 2019.09.10 创建 -->
+**作用域链（scope chain）** 即 JS 引擎查找某个变量的链条。
+
+**词法作用域**：代码中由变量和函数声明位置决定的作用域（静态作用域）。
