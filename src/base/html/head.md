@@ -73,6 +73,16 @@ http-equiv 属性值：
 
 ### meta 的 name 属性
 name 属性值：
++ viewport
+  ```html
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-sclae=1.0,user-scalable=no">
+  ```
+  - width 控制 viewport 的大小，可以指定一个值，或者特殊的值，如device-width为设备的宽度
+  - height 和 width 相对应，指定高度
+  - initial-scale 初始缩放比例，页面第一次加载时的缩放比例
+  - maximum-scale 允许用户缩放的最大比例
+  - minimum-scale 允许用户缩放的最小比例
+  - user-scalable 用户是否可以手动缩放
 
 ## title 元素
 定义文档的标题。title 的内容可以方便搜索引擎索引页面。只能有一个 \<title> 元素
