@@ -5,7 +5,7 @@
 const path = require('path');
 
 module.exports = {
-  base: '/FEN/',
+  base: '/front-end-road/',
   title: '前端之路',
   description: 'JINJITING 的前端学习笔记。',
   // head: ['link', { rel: 'icon', href: '/logo.png' }],
@@ -20,55 +20,26 @@ module.exports = {
   },
   dest: 'dist',
   themeConfig: {
-    nav: [
-      // {
-      //   text: '读书笔记',
-      //   items: [
-      //     { text: 'JS 高级程序设计', link: '/books/book1/'}
-      //   ]
-      // },
-      { text: '前端基础', link: '/base/' },
-      { text: '脚本', link: '/script/' },
-      // { text: 'pavilion', link: 'https://jinjiting.github.io/pavilion/'}
-    ],
+    // nav: [
+    //   { text: '浏览器', link: '/browser/' },
+    //   { text: 'HTTP', link: '/http/' },
+    //   { text: 'JS', link: '/js/' },
+    // ],
     sidebar: {
-      '/books/book1/': [
-        {
-          title: '6-面向对象',
-          children: [
-            { title: '理解对象', path: '/books/book1/6-1.md'},
-            { title: '创建对象', path: '/books/book1/6-2.md'},
-            { title: '继承', path: '/books/book1/6-3.md'}
-          ]
-        }
+      '/browser/': [
+        { title: '浏览器架构简介', path: '/browser/architecture.md'},
+        { title: '浏览器工作流程', path: '/browser/browser-work-process.md'}
       ],
-      '/base/': [
-        {
-          title: '浏览器',
-          children: [
-            { title: '浏览器架构简介', path: '/base/browser/architecture.md'},
-            { title: '浏览器工作流程', path: '/base/browser/browser-work-process.md'}
-          ]
-        },
-        {
-          title: 'HTTP',
-          children: [
-            { title: 'URI/URL/URN', path: '/base/http/uri-and-url.md'},
-            { title: 'HTTP 简介', path: '/base/http/http.md' },
-            { title: 'HTTP 状态码', path: '/base/http/http-status-code.md' },
-            { title: 'HTTP 消息头', path: '/base/http/http-headers.md' }
-          ]
-        }
+      '/http/': [
+        { title: 'URI/URL/URN', path: '/http/uri-and-url.md'},
+        { title: 'HTTP 简介', path: '/http/http.md' },
+        { title: 'HTTP 状态码', path: '/http/http-status-code.md' },
+        { title: 'HTTP 消息头', path: '/http/http-headers.md' }
       ],
-      '/script/': [
-        {
-          title: 'JS/ES',
-          children: [
-            { title: 'this 指向', path: '/script/es/this.md'},
-            { title: '防抖与节流', path: '/script/es/debounce-and-throttle.md'},
-            { title: 'JS 执行机制', path: '/script/es/JS执行机制.md'}
-          ],
-        },
+      '/js/': [
+        { title: 'this 指向', path: '/js/this.md'},
+        { title: '防抖与节流', path: '/js/debounce-and-throttle.md'},
+        { title: 'JS 执行机制', path: '/js/JS执行机制.md'}
       ]
     },
     lastUpdated: '最后更新',

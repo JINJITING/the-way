@@ -13,8 +13,8 @@ deploy:
   skip_cleanup: true
   local_dir: dist
   github_token: ${travis_token}
-  repo: JINJITING/FEN
-  keep_history: true
+  repo: JINJITING/front-end-road
+  keep_history: false
   committer_from_gh: true
   on:
     branch: master

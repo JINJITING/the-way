@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>浮动float</title>
+	<style>
+		.box{
+			width: 800px;
+			border:10px solid lime;
+			color: #fff;
+			padding: 30px;
+			margin: 30px;
+		}
+		.box1{
+			width: 200px;
+			height: 50px;
+			background-color: red;
+			float: left;
+			/*left	元素向左浮动。
+			right	元素向右浮动。
+			none	默认值。元素不浮动，并会显示在其在文本中出现的位置。*/
+		}
+		.box2{
+			width: 200px;
+			height: 50px;
+			background-color: blue;
+			float: right;
+		}
+		.box3{
+			width: 200px;
+			height: 50px;
+			background-color: yellow;
+			float: left;
+		}
+		.box4{
+			clear: both;
+		}
+		/*清除浮动1-1 使用 clear
+		left	在左侧不允许浮动元素。
+		right	在右侧不允许浮动元素。
+		both	在左右两侧均不允许浮动元素。
+		none	默认值。允许浮动元素出现在两侧
+		1-2 使用带clear属性的空元素
+		结合 :after 伪元素（注意这不是伪类，而是伪元素，代表一个元素之后最近的元素）添加clear属性
+
+		优点：简单，代码少，浏览器兼容性好。
+		缺点：需要添加大量无语义的html元素，代码不够优雅，后期不容易维护*/
+		.overflow{
+			overflow: auto;
+			zoom:1;
+			/*zoom: 1 是处理兼容性问题*/
+		}
+		/*清除浮动2--父级div定义 overflow: auto（注意：是父级div也就是这里的 box）*/
+		/*使用overflow属性来清除浮动有一点需要注意，overflow属性共有三个属性值：hidden,auto,visible。我们可以使用hiddent和auto值来清除浮动，但切记不能使用visible值，如果使用将无法达到清除浮动效果。其他两个值都可以，其区别在于一个对seo比较友好，另一个hidden对seo不是太友好
+		优点：不存在结构和语义化问题，代码量极少
+        hidden缺点：内容增多时候容易造成不会自动换行导致内容被隐藏掉，无法显示需要溢出的元素；
+        auto缺点：多个嵌套后，firefox某些情况会造成内容全选；IE中 mouseover 造成宽度改变时会出现最外层模块有滚动条等*/
+        
+        /*清除浮动3 给浮动元素的容器也添加上浮动属性即可清除内部浮动
+		优点：不存在结构和语义化问题，代码量极少 
+		缺点：使得与父元素相邻的元素的布局会受到影响，不可能一直浮动到body，不推荐使用 */
+		.wrap{
+			width: 800px;
+			border:10px solid lime;
+			background-color: red;
+			color: #fff;
+			padding: 30px;
+			margin: 30px;
+		}
+		.wrap1{
+			width: 100px;
+			height: 50px;
+			float: left;
+			background-color: pink;
+		}
+		.wrap2{
+			float: left;
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div class="box overflow">
+		<div class="box1">i am div 1</div>
+		<div class="box2">i am div 2</div>
+		<div class="box3">i am div 3</div>
+		<!-- <div class="box4"></div> 空标签 清除浮动 注意缩写的位置：与浮动元素同级-->
+	</div>
+	<p>1.浮动元素会被自动设置成块级元素，相当于给元素设置了display:block（块级元素能设置宽和高，而行内元素则不可以）</p>
+	<p>2.浮动元素后边的元素若是非浮动行内元素且因为定位产生重叠时，行内元素边框、背景和内容都在该浮动元素“之上”显示.
+        若是非浮动块级元素跟在浮动元素后边且在定位后产生重叠时，该块级元素边框和背景在该浮动元素“之下”显示，只有内容不在浮动元素“之下”显示。 
+	</p>
+	<p>3.子元素全为浮动元素的元素高度自适应问题,即该box的问题</p>
+	<p>4.若浮动元素高度不一致，排列会出现问题</p>
+	<div class="box">
+		<div class="box1">i am div 1</div>
+		<div class="box2">i am div 2</div>
+		<div class="box3">i am div 3</div>
+		<!-- <div class="box4"></div> -->
+	</div>
+	<div class="wrap">
+		<div class="wrap1">i am wrap1 div1</div>
+		<span class="wrap2">i am wrap2 span</span>
+		<div class="wrap1">i am wrap1 div2</div>
+	</div>
+</body>
+</html>

@@ -1,7 +1,8 @@
-# FEN [![Build Status](https://travis-ci.com/JINJITING/FEN.svg?branch=master)](https://travis-ci.com/JINJITING/FEN)
+# Front End Road [![Build Status](https://travis-ci.com/JINJITING/front-end-road.svg?branch=master)](https://travis-ci.com/JINJITING/front-end-road)
 使用 [vuepress](https://www.vuepress.cn/guide/) 搭建的笔记文档。  
 
 主要目录说明：
 + docs：已完成的文档目录   
-+ src：不编译展示的文档，未完成的文档  
++ todo：未完成的文档  
++ veil：不编译的文档
 
