@@ -20,11 +20,12 @@ module.exports = {
   },
   dest: 'dist',
   themeConfig: {
-    // nav: [
-    //   { text: '浏览器', link: '/browser/' },
-    //   { text: 'HTTP', link: '/http/' },
-    //   { text: 'JS', link: '/js/' },
-    // ],
+    nav: [
+      // { text: '浏览器', link: '/browser/' },
+      // { text: 'HTTP', link: '/http/' },
+      { text: 'JS/ES', link: '/es/0' },
+      { text: '扩展', link: '/extension/ISO-8859-1' },
+    ],
     sidebar: {
       '/browser/': [
         { title: '浏览器架构简介', path: '/browser/architecture.md'},
@@ -36,10 +37,10 @@ module.exports = {
         { title: 'HTTP 状态码', path: '/http/http-status-code.md' },
         { title: 'HTTP 消息头', path: '/http/http-headers.md' }
       ],
-      '/js/': [
-        { title: 'this 指向', path: '/js/this.md'},
-        { title: '防抖与节流', path: '/js/debounce-and-throttle.md'},
-        { title: 'JS 执行机制', path: '/js/JS执行机制.md'}
+      '/es/': [
+        { title: 'this 指向', path: '/es/this.md'},
+        { title: '防抖与节流', path: '/es/debounce-and-throttle.md'},
+        { title: 'JS 执行机制', path: '/es/JS执行机制.md'}
       ]
     },
     lastUpdated: '最后更新',
