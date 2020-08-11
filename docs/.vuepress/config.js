@@ -5,8 +5,8 @@
 const path = require('path');
 
 module.exports = {
-  base: '/front-end-road/',
-  title: '前端之路',
+  base: '/the-way/',
+  title: '路',
   description: 'JINJITING 的前端学习笔记。',
   // head: ['link', { rel: 'icon', href: '/logo.png' }],
   host: '0.0.0.0',
@@ -24,6 +24,7 @@ module.exports = {
       // { text: '浏览器', link: '/browser/' },
       // { text: 'HTTP', link: '/http/' },
       { text: 'JS/ES', link: '/es/0' },
+      { text: 'IDE', link: '/ide/0' },
       { text: '扩展', link: '/extension/ISO-8859-1' },
     ],
     sidebar: {
@@ -41,6 +42,11 @@ module.exports = {
         { title: 'this 指向', path: '/es/this.md'},
         { title: '防抖与节流', path: '/es/debounce-and-throttle.md'},
         { title: 'JS 执行机制', path: '/es/JS执行机制.md'}
+      ],
+      '/ide/': [
+        { title: 'Git 基础命令', path: '/ide/git-0.md' },
+        { title: 'Shell', path: '/ide/shell-0.md' },
+        { title: 'travisCI', path: '/ide/travisCI-0.md' },
       ]
     },
     lastUpdated: '最后更新',
