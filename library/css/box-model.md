@@ -61,6 +61,6 @@
   border-top-right-radius: 20px;    /* 右上角 */
   border-bottom-left-radius: 30px;  /* 左下角 */
   border-bottom-right-radius: 40px; /* 右下角 */
-	border-radius: 10px 20px 30px 40px;
+  border-radius: 10px 20px 30px 40px;
 }
 ```

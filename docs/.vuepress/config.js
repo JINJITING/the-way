@@ -29,11 +29,11 @@ module.exports = {
     ],
     sidebar: {
       '/browser/': [
-        { title: '浏览器架构简介', path: '/browser/architecture.md'},
-        { title: '浏览器工作流程', path: '/browser/browser-work-process.md'}
+        { title: '浏览器架构简介', path: '/browser/architecture.md' },
+        { title: '浏览器工作流程', path: '/browser/browser-work-process.md' }
       ],
       '/http/': [
-        { title: 'URI/URL/URN', path: '/http/uri-and-url.md'},
+        { title: 'URI/URL/URN', path: '/http/uri-and-url.md' },
         { title: 'HTTP 简介', path: '/http/http.md' },
         { title: 'HTTP 状态码', path: '/http/http-status-code.md' },
         { title: 'HTTP 消息头', path: '/http/http-headers.md' }
@@ -44,7 +44,8 @@ module.exports = {
         { title: 'JS 执行机制', path: '/es/JS执行机制.md'}
       ],
       '/ide/': [
-        { title: 'Git 基础命令', path: '/ide/git-0.md' },
+        { title: 'Git 基础命令', path: '/ide/git-1.md' },
+        { title: 'Git 命令（二）', path: '/ide/git-2.md' },
         { title: 'Shell', path: '/ide/shell-0.md' },
         { title: 'travisCI', path: '/ide/travisCI-0.md' },
       ]
