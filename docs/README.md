@@ -1,4 +1,4 @@
-# The Way
+# FE Notes
 记录学习的仓库。
 
 
