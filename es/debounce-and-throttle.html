@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>防抖（debounce）与节流（throttle） | 前端笔记</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="JINJITING 的前端学习笔记。">
+    
+    <link rel="preload" href="/fe-notes/assets/css/0.styles.11c32323.css" as="style"><link rel="preload" href="/fe-notes/assets/js/app.5bf03349.js" as="script"><link rel="preload" href="/fe-notes/assets/js/2.08feea58.js" as="script"><link rel="preload" href="/fe-notes/assets/js/12.2ad63311.js" as="script"><link rel="prefetch" href="/fe-notes/assets/js/10.65d3a43f.js"><link rel="prefetch" href="/fe-notes/assets/js/11.fc301195.js"><link rel="prefetch" href="/fe-notes/assets/js/13.4d78dbf4.js"><link rel="prefetch" href="/fe-notes/assets/js/14.d1e5417b.js"><link rel="prefetch" href="/fe-notes/assets/js/15.d1e39632.js"><link rel="prefetch" href="/fe-notes/assets/js/16.2fee1dce.js"><link rel="prefetch" href="/fe-notes/assets/js/17.9d3df443.js"><link rel="prefetch" href="/fe-notes/assets/js/18.5e358cad.js"><link rel="prefetch" href="/fe-notes/assets/js/19.a9ee5e34.js"><link rel="prefetch" href="/fe-notes/assets/js/20.62f07cd9.js"><link rel="prefetch" href="/fe-notes/assets/js/21.5d91ef00.js"><link rel="prefetch" href="/fe-notes/assets/js/22.3888d3cd.js"><link rel="prefetch" href="/fe-notes/assets/js/23.8f8af772.js"><link rel="prefetch" href="/fe-notes/assets/js/24.5ba70534.js"><link rel="prefetch" href="/fe-notes/assets/js/25.7773ff06.js"><link rel="prefetch" href="/fe-notes/assets/js/26.530cc259.js"><link rel="prefetch" href="/fe-notes/assets/js/3.b422ad30.js"><link rel="prefetch" href="/fe-notes/assets/js/4.18a9b86e.js"><link rel="prefetch" href="/fe-notes/assets/js/5.7ab9c794.js"><link rel="prefetch" href="/fe-notes/assets/js/6.605733ee.js"><link rel="prefetch" href="/fe-notes/assets/js/7.48ac54af.js"><link rel="prefetch" href="/fe-notes/assets/js/8.568f89d0.js"><link rel="prefetch" href="/fe-notes/assets/js/9.6138a6cd.js">
+    <link rel="stylesheet" href="/fe-notes/assets/css/0.styles.11c32323.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/fe-notes/" class="home-link router-link-active"><!----> <span class="site-name">前端笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/fe-notes/es/0.html" class="nav-link">
+  JS/ES
+</a></div><div class="nav-item"><a href="/fe-notes/ide/0.html" class="nav-link">
+  IDE
+</a></div><div class="nav-item"><a href="/fe-notes/extension/ISO-8859-1.html" class="nav-link">
+  扩展
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/fe-notes/es/0.html" class="nav-link">
+  JS/ES
+</a></div><div class="nav-item"><a href="/fe-notes/ide/0.html" class="nav-link">
+  IDE
+</a></div><div class="nav-item"><a href="/fe-notes/extension/ISO-8859-1.html" class="nav-link">
+  扩展
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/fe-notes/es/this.html" class="sidebar-link">this 指向</a></li><li><a href="/fe-notes/es/debounce-and-throttle.html" aria-current="page" class="active sidebar-link">防抖与节流</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/fe-notes/es/debounce-and-throttle.html#防抖" class="sidebar-link">防抖</a></li><li class="sidebar-sub-header"><a href="/fe-notes/es/debounce-and-throttle.html#节流" class="sidebar-link">节流</a></li></ul></li><li><a href="/fe-notes/es/JS执行机制.html" class="sidebar-link">JS 执行机制</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="防抖-debounce-与节流-throttle"><a href="#防抖-debounce-与节流-throttle" class="header-anchor">#</a> 防抖（debounce）与节流（throttle）</h1> <h2 id="防抖"><a href="#防抖" class="header-anchor">#</a> 防抖</h2> <p>持续触发事件时，在wait时间内只执行一次函数，如果在wait时间内又再此触发，重新计算时间。</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">/**
+ * @desc 防抖函数
+ * @param {*} fn 执行函数
+ * @param {*} wait 延迟时间毫秒数
+ * @param {*} immediate true 为操作后立即执行，false 操作后延迟执行
+ */</span>
+<span class="token keyword">function</span> <span class="token function">debounce</span><span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span>wait<span class="token punctuation">,</span>immediate<span class="token operator">=</span><span class="token boolean">true</span></span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">var</span> timeout <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> <span class="token function-variable function">debounced</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> context <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> args <span class="token operator">=</span> arguments<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>timeout<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>immediate<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//立即执行</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>timeout<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        timeout<span class="token operator">=</span><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+          timeout<span class="token operator">=</span><span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>wait<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span><span class="token comment">//延迟执行</span>
+      timeout<span class="token operator">=</span><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+        <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>wait<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> debounced<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><p>应用场景:</p> <ul><li>表单验证</li> <li>搜索框输入查询</li> <li>按钮提交事件</li></ul> <h2 id="节流"><a href="#节流" class="header-anchor">#</a> 节流</h2> <p>持续触发事件时，在一定时间内只执行一次函数。</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">/**
+ * @desc 节流函数
+ * @param {*} fn 执行函数
+ * @param {*} wait 延迟时间毫秒数
+ * @param {*} leading true 为时间段开始时执行，false 时间段结束时执行
+ */</span>
+<span class="token keyword">function</span> <span class="token function">throttle</span><span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span>wait<span class="token punctuation">,</span>leading<span class="token operator">=</span><span class="token boolean">true</span></span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>leading<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> previous <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> timeout <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">var</span> <span class="token function-variable function">throttled</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> context <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> args <span class="token operator">=</span> arguments<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>leading<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">var</span> now <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>now <span class="token operator">-</span> previous <span class="token operator">&gt;</span> wait<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        previous <span class="token operator">=</span> now<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>timeout<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        timeout <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+          timeout <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+          <span class="token function">fn</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>wait<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> throttled<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><p>应用场景:</p> <ul><li>按钮点击事件</li> <li>鼠标移动事件</li> <li>拖拽事件</li> <li>滚动事件</li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后更新:</span> <span class="time">6/28/2020, 1:15:15 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/fe-notes/es/this.html" class="prev">
+        this 指向
+      </a></span> <span class="next"><a href="/fe-notes/es/JS执行机制.html">
+        JS 执行机制
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/fe-notes/assets/js/app.5bf03349.js" defer></script><script src="/fe-notes/assets/js/2.08feea58.js" defer></script><script src="/fe-notes/assets/js/12.2ad63311.js" defer></script>
+  </body>
+</html>
