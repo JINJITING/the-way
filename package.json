@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "description": "person notes",
   "main": "index.js",
-  "repository": "https://github.com/JINJITING/front-end-road.git",
+  "repository": "https://github.com/JINJITING/fe-notes.git",
   "author": "JINJITING",
   "license": "MIT",
   "private": true,
@@ -13,10 +13,5 @@
   },
   "devDependencies": {
     "vuepress": "^1.3.1"
-  },
-  "resolutions": {
-    "kind-of": "^6.0.3",
-    "minimist": "^1.2.2",
-    "serialize-javascript": "^2.1.1"
   }
 }

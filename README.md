@@ -1,2 +1,2 @@
-# Front End Road [![Build Status](https://travis-ci.com/JINJITING/front-end-road.svg?branch=master)](https://travis-ci.com/JINJITING/front-end-road)
+# FE Notes [![Build Status](https://travis-ci.com/JINJITING/fe-notes.svg?branch=master)](https://travis-ci.com/JINJITING/fe-notes)
 使用 [vuepress](https://www.vuepress.cn/guide/) 搭建的笔记文档。  
